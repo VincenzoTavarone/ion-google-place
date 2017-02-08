@@ -16,7 +16,8 @@ angular.module('ion-google-place', [])
                 scope: {
                     ngModel: '=?',
                     geocodeOptions: '=',
-                    currentLocation: '@'
+                    currentLocation: '@',
+                    callback : '&'
                 },
                 link: function(scope, element, attrs, ngModel) {
                     var unbindBackButtonAction;
@@ -38,7 +39,7 @@ angular.module('ion-google-place', [])
                                     '<i class="icon ion-ios7-search placeholder-icon"></i>',
                                     '<input class="google-place-search" type="search" ng-model="searchQuery" placeholder="' + (attrs.searchPlaceholder || 'Enter an address, place or ZIP code') + '">',
                                 '</label>',
-                                '<button class="button button-clear">',
+                                '<button class="button button-dark">',
                                     attrs.labelCancel || 'Cancel',
                                 '</button>',
                             '</div>',
@@ -75,6 +76,7 @@ angular.module('ion-google-place', [])
                                 unbindBackButtonAction = null;
                             }
                             scope.$emit('ionGooglePlaceSetLocation',location);
+                            scope.callback({result : location});
                         };
 
                         scope.setCurrentLocation = function(){
