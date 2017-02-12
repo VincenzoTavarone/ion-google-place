@@ -20,6 +20,12 @@ angular.module('ion-google-place', [])
                     callback : '&'
                 },
                 link: function(scope, element, attrs, ngModel) {
+
+                    if(scope.ngModel){
+                        ngModel.$setViewValue(scope.ngModel.formatted_address);
+                        ngModel.$render();
+                    }
+                    
                     var unbindBackButtonAction;
 
                     scope.locations = [];
