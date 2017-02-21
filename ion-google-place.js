@@ -22,8 +22,10 @@ angular.module('ion-google-place', [])
                 link: function(scope, element, attrs, ngModel) {
 
                     if(scope.ngModel){
+                        var tmp = scope.ngModel;
                         ngModel.$setViewValue(scope.ngModel.formatted_address);
                         ngModel.$render();
+                        ngModel.$setViewValue(tmp);
                     }
                     
                     var unbindBackButtonAction;
